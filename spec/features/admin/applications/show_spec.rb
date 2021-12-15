@@ -97,7 +97,7 @@ RSpec.describe 'admin application show page' do
       test_app_2 = test_pet_1.applications.create(applicant_name: "Ben Spiegel", street_address: "6625 Main, Apt. 9", city: "Denver", state: "CO", zip_code: "80026", application_status: "Pending")
 
       visit "/admin/applications/#{test_app_1.id}"
-      save_and_open_page
+      
       within("#pet#{test_pet_1.id}") do
         expect(page).to have_button("Approve Adoption")
         expect(page).to have_button("Deny Adoption")
@@ -124,7 +124,7 @@ RSpec.describe 'admin application show page' do
         expect(page).to have_button("Deny Adoption")
 
         click_button "Approve Adoption"
-        save_and_open_page
+        
         expect(page).to have_content("Application: Approved")
         expect(page).to_not have_button("Approve Adoption")
         expect(page).to_not have_button("Deny Adoption")
